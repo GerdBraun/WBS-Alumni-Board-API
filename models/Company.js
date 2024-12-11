@@ -4,11 +4,13 @@ export default (sequelize) => {
   const Company = sequelize.define("company", {
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     logo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   });
+  return Company;
+
 };
