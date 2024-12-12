@@ -6,14 +6,14 @@ import { ErrorResponse } from "../utils/ErrorResponse.js";
 
 export const register = asyncWrapper(async (req, res, next) => {
   const {
-    body: { email, password },
+    body: { firstName, lastName, email, password },
   } = req;
 
   const found = await User.findOne({ where: { email } });
 
   if (found) throw new ErrorResponse("User Already Exist", 409);
 
-  const user = await User.create({ email, password });
+  const user = await User.create({ firstName, lastName, email, password });
 
   res.json(user);
 });
