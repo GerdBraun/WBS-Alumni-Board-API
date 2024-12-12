@@ -1,4 +1,4 @@
-import { Company } from "../db/db.js";
+import { Company } from "../db.js";
 
 export const createCompany = async (req, res) => {
   try {

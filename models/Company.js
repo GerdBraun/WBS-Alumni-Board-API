@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-  const Company = sequelize.define("company", {
+  const Company = sequelize.define("Company", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
