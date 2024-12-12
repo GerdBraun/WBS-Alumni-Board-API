@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import CompanyModel from "../models/Company.js";
 
+// use neon database (see .env file)
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 const Company = CompanyModel(sequelize);
