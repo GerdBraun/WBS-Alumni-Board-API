@@ -1,4 +1,4 @@
-import { sequelize, User } from "./db.js";
+import { sequelize, User, Company } from "./db.js";
 
 const seedDB = async () => {
   await sequelize.sync({ force: true });
@@ -8,11 +8,26 @@ const seedDB = async () => {
       lastName: "Braun",
       email: "webmaster@your-d-sign.de",
       password: "Start$2017",
-      role: "admin"
+      role: "admin",
+      companyId:1
+    },
+    {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@doe.com",
+      password: "12345678",
+      role: "user"
     },
   ];
 
+  const companies = [
+    {
+        name:"myCompany"
+    }
+  ]
+
   await User.bulkCreate(users, { individualHooks: true });
+  await Company.bulkCreate(companies, { individualHooks: true });
 };
 
 try {
