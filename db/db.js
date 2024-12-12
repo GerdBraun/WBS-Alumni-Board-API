@@ -1,12 +1,7 @@
 import { Sequelize } from "sequelize";
 import CompanyModel from "../models/Company.js";
 
-//const sequelize = new Sequelize(process.env.DATABASE_URL);
-const sequelize = new Sequelize("your-d-sign_wbs_alumni", "wbs_usr", "Start$2017", {
-	host:"localhost",
-	port:"3306",
-	dialect: "mariadb",
-});
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 const Company = CompanyModel(sequelize);
 
