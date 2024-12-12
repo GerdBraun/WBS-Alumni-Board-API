@@ -1,10 +1,12 @@
 import { Sequelize } from "sequelize";
-import CompanyModel from "../models/Company.js";
+// import CompanyModel from "../models/Company.js";
+import UserModel from "./models/User.js";
 
 // use neon database (see .env file)
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
-const Company = CompanyModel(sequelize);
+// const Company = CompanyModel(sequelize);
+const User = UserModel(sequelize);
 
 try {
   await sequelize.sync({ force: false });
@@ -16,5 +18,5 @@ try {
 
 export {
     sequelize,
-    Company
+    User,
 }

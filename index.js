@@ -1,20 +1,19 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import {errorHandler} from './middleware/errorHandler.js'
-import companyRouter from "./routes/companyRouter.js";
+import {errorHandler} from './middlewares/errorHandler.js'
+import router from "./routes/baseRouter.js";
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
 
-// Enable CORS for frontend requests
 app.use(cors());
-
 app.use(express.json());
 
-app.use("/companies", companyRouter);
+app.use("/api", router);
+app.use(errorHandler);
 
 
 // Custom error handling middleware
