@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../db.js";
+import { Company, Job, User } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -48,4 +48,29 @@ export const getProfile = asyncWrapper(async (req, res, next) => {
   } = req;
   const user = await User.findByPk(id);
   res.json(user);
+});
+
+/**
+ * "standard" CRUD
+ */
+
+export const findOneById = asyncWrapper(async (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  const record = await User.findByPk(id,{
+    include:[
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name"],
+      },
+      {
+        model: Job,
+        required: false,
+        attributes: ["id", "title"],
+      },
+  ]
+  });
+  res.json(record);
 });
