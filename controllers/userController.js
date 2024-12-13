@@ -66,6 +66,17 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
         attributes: ["id", "name"],
       },
       {
+        model: BridgeUserSkill,
+        required: false,
+        attributes: ["SkillId"],
+        include: [
+          {
+            model: Skill,
+            attributes: ["id", "name",],
+          },
+        ],
+      },
+      {
         model: Job,
         required: false,
         attributes: ["id", "title"],
@@ -98,12 +109,12 @@ export const findAll = asyncWrapper(async (req, res, next) => {
         model: BridgeUserSkill,
         required: false,
         attributes: ["SkillId"],
-        // include: [
-        //   {
-        //     model: Skill,
-        //     attributes: ["id", "name",],
-        //   },
-        // ],
+        include: [
+          {
+            model: Skill,
+            attributes: ["id", "name",],
+          },
+        ],
       },
       {
         model: Job,
