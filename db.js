@@ -19,14 +19,19 @@ User.hasOne(Company, { foreignKey: "id" });
 User.hasMany(Job, { foreignKey: "id" });
 Job.belongsTo(User, { foreignKey: "ownerId" });
 
-Job.hasOne(Company, { foreignKey: "companyId" });
 Company.hasMany(Job, { foreignKey: "id" });
+Job.hasOne(Company, { foreignKey: "companyId" });
+
+
 
 User.hasMany(BridgeUserSkill, { foreignKey: "UserId" });
 Skill.hasMany(BridgeUserSkill, { foreignKey: "SkillId" });
 
 User.belongsToMany(Skill, { through: BridgeUserSkill });
 Skill.belongsToMany(User, { through: BridgeUserSkill });
+
+BridgeUserSkill.hasOne(Skill, { foreignKey: "id" })
+BridgeUserSkill.hasOne(User, { foreignKey: "id" })
 
 try {
   await sequelize.sync({ force: false });
