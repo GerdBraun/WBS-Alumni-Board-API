@@ -39,7 +39,8 @@ export const login = asyncWrapper(async (req, res, next) => {
     expiresIn: 3600000,
   });
 
-  res.json({ user: payload, token });
+  // res.json({ user: payload, token });
+  res.json({ user, token });
 });
 
 export const getProfile = asyncWrapper(async (req, res, next) => {
