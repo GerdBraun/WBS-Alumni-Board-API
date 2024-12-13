@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../db.js";
+import { Company, Job, User, BridgeUserSkill, Skill } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -48,4 +48,88 @@ export const getProfile = asyncWrapper(async (req, res, next) => {
   } = req;
   const user = await User.findByPk(id);
   res.json(user);
+});
+
+/**
+ * "standard" CRUD
+ */
+
+export const findOneById = asyncWrapper(async (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  const record = await User.findByPk(id, {
+    include: [
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name"],
+      },
+      {
+        model: Job,
+        required: false,
+        attributes: ["id", "title"],
+        include: [
+          {
+            model: Company,
+            required: false,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
+  res.json(record);
+});
+
+export const findAll = asyncWrapper(async (req, res, next) => {
+  const { page, limit, offset } = res.pagination;
+  const records = await User.findAndCountAll({
+    offset,
+    limit,
+    order: [["createdAt", "DESC"]],
+    include: [
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name"],
+      },
+      {
+        model: BridgeUserSkill,
+        required: false,
+        attributes: ["SkillId"],
+        // include: [
+        //   {
+        //     model: Skill,
+        //     attributes: ["id", "name",],
+        //   },
+        // ],
+      },
+      {
+        model: Job,
+        required: false,
+        attributes: ["id", "title"],
+        include: [
+          {
+            model: Company,
+            required: false,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
+
+  const totalCount = records.count;
+  const totalPages = Math.ceil(totalCount / limit);
+
+  const paginationData = {
+    totalCount,
+    totalPages,
+    currentPage: page,
+    hasNextPage: page < totalPages,
+    hasPreviousPage: page > 1,
+  };
+
+  res.json({ ...paginationData, results: records.rows });
 });
