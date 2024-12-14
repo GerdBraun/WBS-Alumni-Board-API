@@ -1,4 +1,13 @@
-import { sequelize, User, Company, Job, Skill, BridgeUserSkill } from "./db.js";
+import {
+  sequelize,
+  User,
+  Company,
+  Job,
+  Skill,
+  BridgeUserSkill,
+  BridgeProjectSkill,
+  Project,
+} from "./db.js";
 
 const seedDB = async () => {
   await sequelize.sync({ force: true });
@@ -51,7 +60,7 @@ const seedDB = async () => {
       location: "Munich",
       link: "https://www.wbscodingschool.com/",
       companyId: 2,
-      ownerId: 1,
+      ownerId: 2,
     },
   ];
 
@@ -72,20 +81,41 @@ const seedDB = async () => {
 
   const bus = [
     {
-      UserId:1,
-      SkillId:1,
+      UserId: 1,
+      SkillId: 1,
     },
     {
-      UserId:1,
-      SkillId:2,
+      UserId: 1,
+      SkillId: 2,
     },
-  ]
+  ];
+
+  const projects = [
+    {
+      title: "Project A",
+      description: "lorem ipsum dolor sit amet...",
+      ownerId:1
+    },
+  ];
+
+  const bps = [
+    {
+      ProjectId: 1,
+      SkillId: 1,
+    },
+    {
+      ProjectId: 1,
+      SkillId: 2,
+    },
+  ];
 
   await User.bulkCreate(users, { individualHooks: true });
   await Company.bulkCreate(companies, { individualHooks: true });
   await Job.bulkCreate(jobs, { individualHooks: true });
   await Skill.bulkCreate(skills, { individualHooks: true });
   await BridgeUserSkill.bulkCreate(bus, { individualHooks: true });
+  await Project.bulkCreate(projects, { individualHooks: true });
+  await BridgeProjectSkill.bulkCreate(bps, { individualHooks: true });
 };
 
 try {
