@@ -26,6 +26,8 @@ Job.belongsTo(User, { foreignKey: "ownerId" });
 Company.hasMany(Job, { foreignKey: "id" });
 Job.hasOne(Company, { foreignKey: "id" });
 
+User.hasMany(Project, { foreignKey: "id" });
+Project.belongsTo(User, { foreignKey: "ownerId" });
 
 /**
  * associations User - Skill
