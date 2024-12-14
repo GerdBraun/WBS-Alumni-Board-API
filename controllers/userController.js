@@ -139,3 +139,56 @@ export const findAll = asyncWrapper(async (req, res, next) => {
 
   res.json({ ...paginationData, results: records.rows });
 });
+
+export const updateOne = asyncWrapper(async (req, res, next) => {
+  const {
+    params: { id },
+    body,
+  } = req;
+
+  const [updated] = await User.update(body, {
+    where: { id },
+  });
+
+  // delete / insert BridgeUserSkills
+  await deleteBridgeUserSkillsByUserId(id);
+  const skills = body.skills;
+  if (skills) {
+    skills.map((skillId) => {
+      BridgeUserSkill.create({
+        UserId: id,
+        SkillId: skillId,
+      });
+    });
+  }
+
+  if (!updated) {
+    throw new ErrorResponse("Record not found", 404);
+  }
+  const updatedRecord = await User.findByPk(id);
+  res.json(updatedRecord);
+});
+
+export const deleteOne = asyncWrapper(async (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  const deleted = await User.destroy({
+    where: { id },
+  });
+
+  if (!deleted) {
+    throw new ErrorResponse("Record not found", 404);
+  }
+  await deleteBridgeUserSkillsByUserId(id);
+  res.status(204).end();
+});
+
+/**
+ * utility methods
+ */
+
+const deleteBridgeUserSkillsByUserId = async (id) => {
+  await BridgeUserSkill.destroy({ where: { UserId: id } });
+  return true;
+};
