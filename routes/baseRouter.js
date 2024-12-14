@@ -1,6 +1,7 @@
 import express from "express";
 import authRouter from "./authRouter.js";
-import usersRouter from "./usersRouter.js";
+import userRouter from "./userRouter.js";
+import jobRouter from "./jobRouter.js";
 
 import { dynamicModelMiddleware } from "../middlewares/dynamicModel.js";
 import { paginationMiddleware } from "../middlewares/paginationMiddleware.js";
@@ -17,7 +18,8 @@ import {
 const router = express.Router();
 
 router.use("/auth", authRouter);
-router.use("/users", usersRouter);
+router.use("/users", userRouter);
+router.use("/jobs", jobRouter);
 
 router.use("/:model", dynamicModelMiddleware);
 
