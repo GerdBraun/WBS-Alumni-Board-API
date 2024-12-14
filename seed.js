@@ -96,6 +96,11 @@ const seedDB = async () => {
       description: "lorem ipsum dolor sit amet...",
       ownerId:1
     },
+    {
+      title: "Project B",
+      description: "lorem ipsum dolor sit amet...",
+      ownerId:2
+    },
   ];
 
   const bps = [
@@ -106,6 +111,10 @@ const seedDB = async () => {
     {
       ProjectId: 1,
       SkillId: 2,
+    },
+    {
+      ProjectId: 2,
+      SkillId: 3,
     },
   ];
 
