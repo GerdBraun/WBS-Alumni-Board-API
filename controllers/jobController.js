@@ -1,4 +1,4 @@
-import { Company, Job } from "../db.js";
+import { Company, Job, User } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -12,7 +12,12 @@ export const findAll = asyncWrapper(async (req, res, next) => {
       {
         model: Company,
         required: false,
-        attributes: ["id", "name","logo"],
+        attributes: ["id", "name", "logo"],
+      },
+      {
+        model: User,
+        required: false,
+        attributes: ["id", "firstName", "lastName"],
       },
     ],
   });
@@ -35,15 +40,19 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
   const {
     params: { id },
   } = req;
-  const record = await Job.findByPk(id,{
+  const record = await Job.findByPk(id, {
     include: [
-        {
-          model: Company,
-          required: false,
-          attributes: ["id", "name","logo"],
-        },
-      ],
-  
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name", "logo"],
+      },
+      {
+        model: User,
+        required: false,
+        attributes: ["id", "firstName", "lastName"],
+      },
+    ],
   });
   res.json(record);
 });

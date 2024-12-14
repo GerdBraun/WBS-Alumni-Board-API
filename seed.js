@@ -60,7 +60,7 @@ const seedDB = async () => {
       location: "Munich",
       link: "https://www.wbscodingschool.com/",
       companyId: 2,
-      ownerId: 1,
+      ownerId: 2,
     },
   ];
 
