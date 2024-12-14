@@ -88,6 +88,14 @@ const seedDB = async () => {
       UserId: 1,
       SkillId: 2,
     },
+    {
+      UserId: 2,
+      SkillId: 1,
+    },
+    {
+      UserId: 3,
+      SkillId: 2,
+    },
   ];
 
   const projects = [

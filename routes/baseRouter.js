@@ -1,6 +1,7 @@
 import express from "express";
 import authRouter from "./authRouter.js";
 import userRouter from "./userRouter.js";
+import skillRouter from "./skillRouter.js";
 import jobRouter from "./jobRouter.js";
 import projectRouter from "./projectRouter.js";
 
@@ -20,6 +21,7 @@ const router = express.Router();
 
 router.use("/auth", authRouter);
 router.use("/users", userRouter);
+router.use("/skills", skillRouter);
 router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
 
