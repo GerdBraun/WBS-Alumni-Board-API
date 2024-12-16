@@ -23,7 +23,36 @@ export const login = asyncWrapper(async (req, res, next) => {
     body: { email, password },
   } = req;
 
-  const user = await User.scope("withPassword").findOne({ where: { email } });
+  const user = await User.scope("withPassword").findOne({
+    where: { email },
+    include: [
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name"],
+      },
+      {
+        model: Skill,
+        required: false,
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+      {
+        model: Job,
+        required: false,
+        attributes: ["id", "title"],
+        include: [
+          {
+            model: Company,
+            required: false,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
 
   if (!user)
     throw new ErrorResponse("Forbidden. Invalid email or password", 403);
