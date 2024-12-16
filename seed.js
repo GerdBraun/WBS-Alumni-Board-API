@@ -132,25 +132,42 @@ const seedDB = async () => {
 
   const comments = [
     {
-      parent:"jobs",
-      parentId:1,
-      ownerId:1,
-      text:"Comment on job: lorem ipsum dolor sit amet...",
+      parent: "projects",
+      parentId: 1,
+      ownerId: 1,
+      text: "Comment on project 1: lorem ipsum dolor sit amet...",
     },
     {
-      parent:"companies",
-      parentId:1,
-      ownerId:2,
-      text:"Comment on company: lorem ipsum dolor sit amet...",
+      parent: "projects",
+      parentId: 1,
+      ownerId: 2,
+      text: "Comment on project 1: lorem ipsum dolor sit amet...",
     },
     {
-      parent:"projects",
-      parentId:1,
-      ownerId:2,
-      text:"Comment on project: lorem ipsum dolor sit amet...",
+      parent: "projects",
+      parentId: 2,
+      ownerId: 2,
+      text: "Comment on project 2: lorem ipsum dolor sit amet...",
     },
-  ]
-
+    {
+      parent: "companies",
+      parentId: 1,
+      ownerId: 2,
+      text: "Comment on company 1: lorem ipsum dolor sit amet...",
+    },
+    {
+      parent: "companies",
+      parentId: 2,
+      ownerId: 2,
+      text: "Comment on company 2: lorem ipsum dolor sit amet...",
+    },
+    {
+      parent: "jobs",
+      parentId: 1,
+      ownerId: 2,
+      text: "Comment on job 1: lorem ipsum dolor sit amet...",
+    },
+  ];
 
   await User.bulkCreate(users, { individualHooks: true });
   await Company.bulkCreate(companies, { individualHooks: true });

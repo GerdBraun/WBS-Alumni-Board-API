@@ -1,3 +1,4 @@
+import { commentSchema } from "../schemas/commentSchema.js";
 import { userSchema } from "../schemas/userSchema.js";
 
 import { ErrorResponse } from "../utils/ErrorResponse.js";
@@ -12,6 +13,9 @@ export const validateRequest = (req, res, next) => {
   switch (model) {
     case "users":
       schema = userSchema[method];
+      break;
+    case "comments":
+      schema = commentSchema[method];
       break;
     default:
       return next(new ErrorResponse("Invalid model specified", 404));
