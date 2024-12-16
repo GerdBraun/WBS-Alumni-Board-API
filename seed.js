@@ -7,6 +7,7 @@ import {
   BridgeUserSkill,
   BridgeProjectSkill,
   Project,
+  Comment,
 } from "./db.js";
 
 const seedDB = async () => {
@@ -105,12 +106,12 @@ const seedDB = async () => {
     {
       title: "Project A",
       description: "lorem ipsum dolor sit amet...",
-      ownerId:1
+      ownerId: 1,
     },
     {
       title: "Project B",
       description: "lorem ipsum dolor sit amet...",
-      ownerId:2
+      ownerId: 2,
     },
   ];
 
@@ -129,6 +130,28 @@ const seedDB = async () => {
     },
   ];
 
+  const comments = [
+    {
+      parent:"jobs",
+      parentId:1,
+      ownerId:1,
+      text:"Comment on job: lorem ipsum dolor sit amet...",
+    },
+    {
+      parent:"companies",
+      parentId:1,
+      ownerId:2,
+      text:"Comment on company: lorem ipsum dolor sit amet...",
+    },
+    {
+      parent:"projects",
+      parentId:1,
+      ownerId:2,
+      text:"Comment on project: lorem ipsum dolor sit amet...",
+    },
+  ]
+
+
   await User.bulkCreate(users, { individualHooks: true });
   await Company.bulkCreate(companies, { individualHooks: true });
   await Job.bulkCreate(jobs, { individualHooks: true });
@@ -136,6 +159,7 @@ const seedDB = async () => {
   await BridgeUserSkill.bulkCreate(bus, { individualHooks: true });
   await Project.bulkCreate(projects, { individualHooks: true });
   await BridgeProjectSkill.bulkCreate(bps, { individualHooks: true });
+  await Comment.bulkCreate(comments, { individualHooks: true });
 };
 
 try {
