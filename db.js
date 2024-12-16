@@ -58,7 +58,7 @@ BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
 /**
  * comments
  */
-User.hasMany(Comment, { foreignKey: "id" });
+//User.hasMany(Comment, { foreignKey: "id" });
 Comment.belongsTo(User, { foreignKey: "ownerId" });
 
 try {
