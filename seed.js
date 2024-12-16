@@ -15,6 +15,7 @@ const seedDB = async () => {
     {
       firstName: "Gerd",
       lastName: "Braun",
+      avatar: "https://i.pravatar.cc/150?img=11",
       email: "webmaster@your-d-sign.de",
       password: "Start$2017",
       role: "admin",
@@ -23,6 +24,7 @@ const seedDB = async () => {
     {
       firstName: "John",
       lastName: "Doe",
+      avatar: "https://i.pravatar.cc/150?img=4",
       email: "john@doe.com",
       password: "12345678",
       role: "moderator",
@@ -30,6 +32,7 @@ const seedDB = async () => {
     {
       firstName: "Jane",
       lastName: "Doe",
+      avatar: "https://i.pravatar.cc/150?img=2",
       email: "jane@doe.com",
       password: "12345678",
       role: "user",
