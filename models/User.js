@@ -45,6 +45,16 @@ export default (sequelize) => {
           },
         },
       },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        // validate: {
+        //   len: {
+        //     args: [8, 50],
+        //     msg: "Password must be between 8 and 50 characters",
+        //   },
+        // },
+      },
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
