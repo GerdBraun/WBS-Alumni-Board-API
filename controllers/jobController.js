@@ -1,4 +1,4 @@
-import { Company, Job, User } from "../db.js";
+import { Comment, Company, Job, User } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -51,6 +51,11 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
         model: User,
         required: false,
         attributes: ["id", "firstName", "lastName"],
+      },
+      {
+        model: Comment,
+        where: { parent: "job" },
+        attributes: ["id"],
       },
     ],
   });

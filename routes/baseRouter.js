@@ -16,6 +16,7 @@ import {
   findOneById,
   updateOne,
 } from "../controllers/CRUD.js";
+import { findAllByModelAndId } from "../controllers/commentController.js";
 
 const router = express.Router();
 
@@ -24,6 +25,9 @@ router.use("/users", userRouter);
 router.use("/skills", skillRouter);
 router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
+
+// uses the method from the commentController for finding 
+router.use("/comments/:model/:id",paginationMiddleware, findAllByModelAndId);
 
 router.use("/:model", dynamicModelMiddleware);
 

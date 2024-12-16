@@ -7,7 +7,7 @@ export const authenticate = async (req, res, next) => {
 
     if (!token) return next(new ErrorResponse("Forbidden", 403));
 
-    const payload = await jwt.verify(token, process.env.JWT_SECRET ?? "secret");
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = payload;
     next();
   } catch (error) {
