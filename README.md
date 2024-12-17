@@ -13,6 +13,8 @@
 ### Matches endpoints
 - **/api/match/users/jobs/:jobId** get users matching to a job
 - **/api/match/jobs/users/:userId** get jobs matching to a user
+- **/api/match/users/projects/:jobId** get users matching to a project
+- **/api/match/projects/users/:userId** get projects matching to a user
 
 ## ToDos:
 - secure endpoints as needed
