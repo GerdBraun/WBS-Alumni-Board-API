@@ -6,6 +6,7 @@ import ProjectModel from "./models/Project.js";
 import SkillModel from "./models/Skill.js";
 import BridgeUserSkillModel from "./models/BridgeUserSkill.js";
 import BridgeProjectSkillModel from "./models/BridgeProjectSkill.js";
+import BridgeJobSkillModel from "./models/BridgeJobSkill.js";
 import CommentModel from "./models/Comment.js";
 
 // use neon database (see .env file)
@@ -18,6 +19,7 @@ const Project = ProjectModel(sequelize);
 const Skill = SkillModel(sequelize);
 const BridgeUserSkill = BridgeUserSkillModel(sequelize);
 const BridgeProjectSkill = BridgeProjectSkillModel(sequelize);
+const BridgeJobSkill = BridgeJobSkillModel(sequelize);
 const Comment = CommentModel(sequelize);
 
 User.hasOne(Company, { foreignKey: "id" });
@@ -56,6 +58,30 @@ BridgeProjectSkill.hasOne(Project, { foreignKey: "id" });
 BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
 
 /**
+ * associations Project - Skill
+ */
+Project.hasMany(BridgeProjectSkill, { foreignKey: "ProjectId" });
+Skill.hasMany(BridgeProjectSkill, { foreignKey: "SkillId" });
+
+Project.belongsToMany(Skill, { through: BridgeProjectSkill });
+Skill.belongsToMany(Project, { through: BridgeProjectSkill });
+
+BridgeProjectSkill.hasOne(Project, { foreignKey: "id" });
+BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
+
+/**
+ * associations Job - Skill
+ */
+Job.hasMany(BridgeJobSkill, { foreignKey: "JobId" });
+Skill.hasMany(BridgeJobSkill, { foreignKey: "SkillId" });
+
+Job.belongsToMany(Skill, { through: BridgeJobSkill });
+Skill.belongsToMany(Job, { through: BridgeJobSkill });
+
+BridgeJobSkill.hasOne(Job, { foreignKey: "id" });
+BridgeJobSkill.hasOne(Skill, { foreignKey: "id" });
+
+/**
  * comments
  */
 //User.hasMany(Comment, { foreignKey: "id" });
@@ -77,5 +103,6 @@ export {
   BridgeUserSkill,
   Project,
   BridgeProjectSkill,
+  BridgeJobSkill,
   Comment,
 };
