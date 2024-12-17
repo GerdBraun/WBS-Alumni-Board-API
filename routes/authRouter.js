@@ -5,8 +5,9 @@ import { validateUser } from "../middlewares/validateRequest.js";
 
 const authRouter = express.Router();
 
+authRouter.post("/signup", validateUser, register);
 authRouter.post("/login", validateUser, login);
 authRouter.get("/profile", authenticate, getProfile);
-authRouter.post("/signup", validateUser, register);
+
 
 export default authRouter;
