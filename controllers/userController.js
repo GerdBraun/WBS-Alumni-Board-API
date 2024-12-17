@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Company, Job, User, BridgeUserSkill, Skill } from "../db.js";
+import { Company, Job, User, BridgeUserSkill, Skill, Project } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -104,6 +104,11 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
         },
       },
       {
+        model: Project,
+        required: false,
+        attributes: ["id", "title"],
+      },
+      {
         model: Job,
         required: false,
         attributes: ["id", "title"],
@@ -139,6 +144,11 @@ export const findAll = asyncWrapper(async (req, res, next) => {
         through: {
           attributes: [],
         },
+      },
+      {
+        model: Project,
+        required: false,
+        attributes: ["id", "title"],
       },
       {
         model: Job,
