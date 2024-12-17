@@ -68,11 +68,6 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
           attributes: [],
         },
       },
-      {
-        model: Comment,
-        where: { parent: "job" },
-        attributes: ["id"],
-      },
     ],
   });
   res.json(record);
