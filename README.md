@@ -10,5 +10,9 @@
 - **/api/comments**
 - **/api/comments/:model/:id** (special) to retrieve data related to a specific entry of a model (e.g. "/api/comments/jobs/1" gets the comments related to the job with id=1)
 
+### Matches endpoints
+- **/api/match/users/jobs/:jobId** get users matching to a job
+- **/api/match/jobs/users/:userId** get jobs matching to a user
+
 ## ToDos:
 - secure endpoints as needed
