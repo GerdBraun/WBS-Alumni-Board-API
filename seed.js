@@ -203,41 +203,51 @@ const seedDB = async () => {
       parent: "questions",
       parentId: 1,
       ownerId: 2,
-      text: "Answer to question 1: I haven't got the slightest cue...",
+      text: "Answer to question 1: I haven't got the slightest clue...",
     },
     {
       parent: "questions",
       parentId: 2,
       ownerId: 2,
-      text: "Answer to question 1: there is a solution for your problem, but I don't have it...",
+      text: "Answer to question 2: there is a solution for your problem, but I don't have it...",
     },
   ];
 
   const questions = [
     {
-      title:"Best practices for managing state",
-      description: "What are the best practices for managing state in a full-stack web application with React and Node.js?",
-      ownerId: 1
+      title:"What are best practices for state management in React?",
+      description:"What are the best practices for managing state in a full-stack web application using React, Redux, and Context API to ensure maintainable and efficient code that can scale for larger applications with multiple components interacting dynamically?",
+      ownerId:1
     },
     {
-      title:"Authorization",
-      description: "How can I integrate authentication and authorization in a full-stack project using JWT and Express.js?",
-      ownerId: 2
+      title:"How to integrate JWT authentication with Express.js backend?",
+      description:"How can I implement JSON Web Token (JWT) authentication and authorization in a full-stack project using Node.js, Express.js for the backend, and React for the frontend, ensuring secure login sessions and protecting user data from unauthorized access?",
+      ownerId:2
     },
     {
-      title:"Performance optimization strategies",
-      description: "What are the performance optimization strategies for a full-stack project using MongoDB as the database?",
-      ownerId: 3
+      title:"How to optimize performance in MongoDB-based full-stack apps?",
+      description:"What are the performance optimization techniques for a full-stack project using MongoDB as the primary database, including indexing, query optimization, and managing large datasets to improve application speed, response time, and overall scalability for growing user demands?",
+      ownerId:3
     },
     {
-      title:"Automated testing and deployment",
-      description: "What tools can help with automated testing and deployment in a full-stack JavaScript project using React?",
-      ownerId: 1
+      title:"What tools help with testing in full-stack JavaScript projects?",
+      description:"What are the most effective tools and libraries for automated testing in full-stack JavaScript projects, such as Jest, Mocha, and Cypress, and how can these be integrated to ensure thorough unit testing, integration testing, and end-to-end testing for both front-end and back-end components?",
+      ownerId:1
     },
     {
-      title:"Scalability",
-      description: "How do I ensure scalability and fault tolerance in a full-stack web application with microservices architecture?",
-      ownerId: 2
+      title:"How to structure microservices in a full-stack web app?",
+      description:"How do I design and structure a microservices architecture in a full-stack web application, ensuring each service is independently deployable, scalable, and fault-tolerant, while maintaining communication between services using REST APIs or messaging queues for efficient operations and scaling?",
+      ownerId:2
+    },
+    {
+      title:"How do I ensure security in full-stack web applications?",
+      description:"What are the key security best practices to follow in a full-stack web application, including protecting against SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and securing sensitive data with encryption while ensuring proper user authentication and authorization layers are in place?",
+      ownerId:3
+    },
+    {
+      title:"How can I scale a full-stack app with Docker?",
+      description:"What are the steps involved in scaling a full-stack web application using Docker containers, including setting up Docker Compose for multiple services, configuring scalability, and deploying across environments like AWS or Kubernetes to improve flexibility, fault tolerance, and performance?",
+      ownerId:1
     }
   ]
 
