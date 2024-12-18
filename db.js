@@ -24,13 +24,13 @@ const Comment = CommentModel(sequelize);
 
 User.hasOne(Company, { foreignKey: "id" });
 
-User.hasMany(Job, { foreignKey: "id" });
+User.hasMany(Job, { foreignKey: "ownerId" });
 Job.belongsTo(User, { foreignKey: "ownerId" });
 
-Company.hasMany(Job, { foreignKey: "id" });
-Job.hasOne(Company, { foreignKey: "id" });
+Company.hasMany(Job, { foreignKey: "cId" });
+Job.hasOne(Company, { foreignKey: "cId" });
 
-User.hasMany(Project, { foreignKey: "id" });
+User.hasMany(Project, { foreignKey: "ownerId" });
 Project.belongsTo(User, { foreignKey: "ownerId" });
 
 /**
