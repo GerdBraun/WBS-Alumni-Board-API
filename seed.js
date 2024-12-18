@@ -215,23 +215,28 @@ const seedDB = async () => {
 
   const questions = [
     {
-      text: "What are the best practices for managing state in a full-stack web application with React and Node.js?",
+      title:"Best practices for managing state",
+      description: "What are the best practices for managing state in a full-stack web application with React and Node.js?",
       ownerId: 1
     },
     {
-      text: "How can I integrate authentication and authorization in a full-stack project using JWT and Express.js?",
+      title:"Authorization",
+      description: "How can I integrate authentication and authorization in a full-stack project using JWT and Express.js?",
       ownerId: 2
     },
     {
-      text: "What are the performance optimization strategies for a full-stack project using MongoDB as the database?",
+      title:"Performance optimization strategies",
+      description: "What are the performance optimization strategies for a full-stack project using MongoDB as the database?",
       ownerId: 3
     },
     {
-      text: "What tools can help with automated testing and deployment in a full-stack JavaScript project using React?",
+      title:"Automated testing and deployment",
+      description: "What tools can help with automated testing and deployment in a full-stack JavaScript project using React?",
       ownerId: 1
     },
     {
-      text: "How do I ensure scalability and fault tolerance in a full-stack web application with microservices architecture?",
+      title:"Scalability",
+      description: "How do I ensure scalability and fault tolerance in a full-stack web application with microservices architecture?",
       ownerId: 2
     }
   ]
