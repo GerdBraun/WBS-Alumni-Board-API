@@ -18,6 +18,7 @@ import {
   updateOne,
 } from "../controllers/CRUD.js";
 import { findAllByModelAndId } from "../controllers/commentController.js";
+import { getStats } from "../controllers/statController.js";
 
 const router = express.Router();
 
@@ -28,6 +29,8 @@ router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
 
 router.use("/match", matchRouter);
+
+router.route("/stats").get(getStats);
 
 // uses the method from the commentController for finding 
 router.use("/comments/:model/:id",paginationMiddleware, findAllByModelAndId);
