@@ -105,15 +105,30 @@ const seedDB = async () => {
 
   const projects = [
     {
-      title: "Project A",
-      description: "lorem ipsum dolor sit amet...",
-      ownerId: 1,
+      title: "PixelForge Studio",
+      description: "A creative full-stack platform for designing, storing, and sharing digital art portfolios with interactive features.",
+      ownerId: 1
     },
     {
-      title: "Project B",
-      description: "lorem ipsum dolor sit amet...",
-      ownerId: 2,
+      title: "CodeLink Hub",
+      description: "A collaborative coding platform combining real-time editing, project management, and user authentication for seamless team workflows.",
+      ownerId: 2
     },
+    {
+      title: "EventSphere Pro",
+      description: "Event management system integrating booking, scheduling, and payment processing for hosting seamless virtual and physical events.",
+      ownerId: 3
+    },
+    {
+      title: "ShopNestify",
+      description: "Full-stack e-commerce platform offering customizable storefronts, secure payment gateways, and dynamic product management tools.",
+      ownerId: 1
+    },
+    {
+      title: "TravelSync Planner",
+      description: "A travel coordination app that synchronizes itineraries, bookings, and trip budgeting across users for seamless group travel.",
+      ownerId: 2
+    }
   ];
 
   const bps = [
