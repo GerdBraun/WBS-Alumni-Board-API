@@ -9,6 +9,7 @@ import {
   Project,
   Comment,
   BridgeJobSkill,
+  Question,
 } from "./db.js";
 
 const seedDB = async () => {
@@ -198,7 +199,42 @@ const seedDB = async () => {
       ownerId: 2,
       text: "Comment on job 1: lorem ipsum dolor sit amet...",
     },
+    {
+      parent: "questions",
+      parentId: 1,
+      ownerId: 2,
+      text: "Answer to question 1: I haven't got the slightest cue...",
+    },
+    {
+      parent: "questions",
+      parentId: 2,
+      ownerId: 2,
+      text: "Answer to question 1: there is a solution for your problem, but I don't have it...",
+    },
   ];
+
+  const questions = [
+    {
+      text: "What are the best practices for managing state in a full-stack web application with React and Node.js?",
+      ownerId: 1
+    },
+    {
+      text: "How can I integrate authentication and authorization in a full-stack project using JWT and Express.js?",
+      ownerId: 2
+    },
+    {
+      text: "What are the performance optimization strategies for a full-stack project using MongoDB as the database?",
+      ownerId: 3
+    },
+    {
+      text: "What tools can help with automated testing and deployment in a full-stack JavaScript project using React?",
+      ownerId: 1
+    },
+    {
+      text: "How do I ensure scalability and fault tolerance in a full-stack web application with microservices architecture?",
+      ownerId: 2
+    }
+  ]
 
   await User.bulkCreate(users, { individualHooks: true });
   await Company.bulkCreate(companies, { individualHooks: true });
@@ -209,6 +245,7 @@ const seedDB = async () => {
   await BridgeProjectSkill.bulkCreate(bps, { individualHooks: true });
   await BridgeJobSkill.bulkCreate(bjs, { individualHooks: true });
   await Comment.bulkCreate(comments, { individualHooks: true });
+  await Question.bulkCreate(questions, { individualHooks: true });
 };
 
 try {
