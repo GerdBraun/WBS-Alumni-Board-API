@@ -8,6 +8,7 @@ import BridgeUserSkillModel from "./models/BridgeUserSkill.js";
 import BridgeProjectSkillModel from "./models/BridgeProjectSkill.js";
 import BridgeJobSkillModel from "./models/BridgeJobSkill.js";
 import CommentModel from "./models/Comment.js";
+import QuestionModel from "./models/Question.js";
 
 // use neon database (see .env file)
 const sequelize = new Sequelize(process.env.DATABASE_URL);
@@ -21,6 +22,7 @@ const BridgeUserSkill = BridgeUserSkillModel(sequelize);
 const BridgeProjectSkill = BridgeProjectSkillModel(sequelize);
 const BridgeJobSkill = BridgeJobSkillModel(sequelize);
 const Comment = CommentModel(sequelize);
+const Question = QuestionModel(sequelize);
 
 User.hasOne(Company, { foreignKey: "id" });
 
@@ -32,6 +34,9 @@ Job.hasOne(Company, { foreignKey: "cId" });
 
 User.hasMany(Project, { foreignKey: "ownerId" });
 Project.belongsTo(User, { foreignKey: "ownerId" });
+
+User.hasMany(Question, { foreignKey: "ownerId" });
+Question.belongsTo(User, { foreignKey: "ownerId" });
 
 /**
  * associations User - Skill
@@ -105,4 +110,5 @@ export {
   BridgeProjectSkill,
   BridgeJobSkill,
   Comment,
+  Question
 };
