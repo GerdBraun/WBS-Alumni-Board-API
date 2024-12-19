@@ -29,7 +29,7 @@ User.hasOne(Company, { foreignKey: "id" });
 User.hasMany(Job, { foreignKey: "ownerId" });
 Job.belongsTo(User, { foreignKey: "ownerId" });
 
-//Company.hasMany(Job, { foreignKey: "companyId" });
+Company.hasMany(Job, { foreignKey: "id" });
 Job.hasOne(Company, { foreignKey: "id" });
 
 User.hasMany(Project, { foreignKey: "ownerId" });
