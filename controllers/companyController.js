@@ -2,11 +2,12 @@ import { Company } from "../db.js";
 
 export const createCompany = async (req, res) => {
   try {
+    const logo = req.file ? req.file.filename : null;
     const {
-      body: { name, logo },
+      body: { name },
     } = req;
     if (!name) return res.status(400).json({ error: "name is required" });
-    const company = await Company.create(req.body);
+     const company = await Company.create({name, logo});
     res.status(201).json(company);
   } catch (error) {
     res.status(500).json({ error: error.message });

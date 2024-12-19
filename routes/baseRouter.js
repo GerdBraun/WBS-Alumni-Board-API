@@ -19,6 +19,7 @@ import {
   updateOne,
 } from "../controllers/CRUD.js";
 import { findAllByModelAndId } from "../controllers/commentController.js";
+import companyRouter from "./companyRouter.js";
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router.use("/skills", skillRouter);
 router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
 router.use("/uploadfile", imageRouter);
+router.use("/company", companyRouter)
 
 router.use("/match", matchRouter);
 
