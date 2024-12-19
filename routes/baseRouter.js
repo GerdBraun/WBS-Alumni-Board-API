@@ -32,7 +32,7 @@ router.use("/projects", projectRouter);
 router.use("/match", matchRouter);
 
 router.route("/stats").get(getStats);
-router.route("/mail").get(sendMail);
+router.route("/mail").post(sendMail);
 
 // uses the method from the commentController for finding 
 router.use("/comments/:model/:id",paginationMiddleware, findAllByModelAndId);
