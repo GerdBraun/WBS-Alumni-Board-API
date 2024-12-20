@@ -9,5 +9,10 @@ authRouter.post("/signup", validateUser, register);
 authRouter.post("/login", validateUser, login);
 authRouter.get("/profile", authenticate, getProfile);
 
+<<<<<<< Updated upstream
+=======
+authRouter.post("/recover-password", recoverPw);
+authRouter.post("/reset-password", resetPw);
+>>>>>>> Stashed changes
 
 export default authRouter;
