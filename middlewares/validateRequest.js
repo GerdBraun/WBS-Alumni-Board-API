@@ -26,7 +26,7 @@ export const validateRequest = (req, res, next) => {
       schema = questionSchema[method];
       break;
     default:
-      return next(new ErrorResponse("Invalid model specified", 404));
+      return next(new ErrorResponse(`Invalid ${model} model specified`, 404));
   }
 
   const { error } = schema?.validate(req.body);

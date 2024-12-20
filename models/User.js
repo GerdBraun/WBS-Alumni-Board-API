@@ -72,6 +72,14 @@ export default (sequelize) => {
           isIn: [["user", "moderator", "admin"]],
         },
       },
+      passwordResetToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      passwordResetTokenExpiry: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
       defaultScope: {

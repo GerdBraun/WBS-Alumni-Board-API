@@ -19,7 +19,7 @@ router
   .post(validateUser, register);
 router
   .route("/:id")
-  .get(authenticate, validateRequest, findOneById)
+  .get(authenticate, findOneById)
   .put(authenticate, validateRequest, updateOne)
   .delete(authenticate, deleteOne);
 
