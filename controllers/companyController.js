@@ -6,8 +6,9 @@ export const createCompany = async (req, res) => {
     const {
       body: { name },
     } = req;
+    console.log(req.body, logo);
     if (!name) return res.status(400).json({ error: "name is required" });
-     const company = await Company.create({name, logo});
+    const company = await Company.create({ name, logo });
     res.status(201).json(company);
   } catch (error) {
     res.status(500).json({ error: error.message });
