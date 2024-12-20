@@ -5,7 +5,7 @@ import skillRouter from "./skillRouter.js";
 import jobRouter from "./jobRouter.js";
 import projectRouter from "./projectRouter.js";
 import matchRouter from "./matchRouter.js";
-import imageRouter from "./imageRouter.js";
+
 
 import { dynamicModelMiddleware } from "../middlewares/dynamicModel.js";
 import { paginationMiddleware } from "../middlewares/paginationMiddleware.js";
@@ -30,7 +30,6 @@ router.use("/users", userRouter);
 router.use("/skills", skillRouter);
 router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
-router.use("/uploadfile", imageRouter);
 router.use("/company", companyRouter)
 
 router.use("/match", matchRouter);
