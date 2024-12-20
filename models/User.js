@@ -40,8 +40,8 @@ export default (sequelize) => {
         allowNull: false,
         validate: {
           len: {
-            args: [8, 50],
-            msg: "Password must be between 8 and 50 characters",
+            args: [8, 100],
+            msg: "Password must be between 8 and 100 characters",
           },
         },
       },
