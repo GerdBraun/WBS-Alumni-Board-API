@@ -72,11 +72,15 @@ export const resetPw = asyncWrapper(async (req, res, next) => {
       return res.status(400).json({ message: "Invalid or expired token" });
     }
 
-    // Hash the new password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // // Hash the new password
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
 
+    // // Update the user's password
+    // user.password = hashedPassword;
+    
     // Update the user's password
-    user.password = hashedPassword;
+    user.password = password;
     user.passwordResetToken = undefined;
     user.passwordResetTokenExpiry = undefined;
 
