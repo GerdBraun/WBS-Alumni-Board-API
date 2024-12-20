@@ -19,6 +19,8 @@ import {
   updateOne,
 } from "../controllers/CRUD.js";
 import { findAllByModelAndId } from "../controllers/commentController.js";
+import { getStats } from "../controllers/statController.js";
+import { sendMail } from "../controllers/mailController.js";
 import companyRouter from "./companyRouter.js";
 
 const router = express.Router();
@@ -32,6 +34,9 @@ router.use("/uploadfile", imageRouter);
 router.use("/company", companyRouter)
 
 router.use("/match", matchRouter);
+
+router.route("/stats").get(getStats);
+router.route("/mail").post(sendMail);
 
 // uses the method from the commentController for finding
 router.use("/comments/:model/:id", paginationMiddleware, findAllByModelAndId);

@@ -7,8 +7,11 @@
 - **/api/skills**
 - **/api/jobs** (pass skills as an array of skill-ids: skills:[])
 - **/api/projects** (pass skills as an array of skill-ids: skills:[])
+- **/api/questions**
 - **/api/comments**
 - **/api/comments/:model/:id** (special) to retrieve data related to a specific entry of a model (e.g. "/api/comments/jobs/1" gets the comments related to the job with id=1)
+- **get** **/api/stats** some basic stats
+- **post** **/api/mail** for sending mails
 
 ### Matches endpoints
 - **/api/match/users/jobs/:jobId** get users matching to a job
