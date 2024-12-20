@@ -24,7 +24,9 @@ const BridgeJobSkill = BridgeJobSkillModel(sequelize);
 const Comment = CommentModel(sequelize);
 const Question = QuestionModel(sequelize);
 
-User.hasOne(Company, { foreignKey: "id" });
+ User.hasOne(Company, { foreignKey: "id" });
+
+Company.hasMany(User, { foreignKey: "id" });
 
 User.hasMany(Job, { foreignKey: "ownerId" });
 Job.belongsTo(User, { foreignKey: "ownerId" });

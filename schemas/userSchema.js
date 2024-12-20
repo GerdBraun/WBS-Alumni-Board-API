@@ -9,6 +9,8 @@ export const userSchema = {
     isActive: Joi.boolean().optional(),
     companyId: Joi.string().optional(),
     role: Joi.string().optional(),
+    passwordResetToken: Joi.string().optional(),
+    passwordResetTokenExpiry: Joi.date().optional(),
   }),
   PUT: Joi.object({
     firstName: Joi.string().min(2).max(30).optional(),
@@ -18,5 +20,7 @@ export const userSchema = {
     isActive: Joi.boolean().optional(),
     companyId: Joi.string().optional(),
     role: Joi.string().optional(),
-  }),
+    passwordResetToken: Joi.string().optional(),
+    passwordResetTokenExpiry: Joi.date().optional(),
+}),
 };
