@@ -10,7 +10,7 @@ authRouter.post("/signup", validateUser, register);
 authRouter.post("/login", validateUser, login);
 authRouter.get("/profile", authenticate, getProfile);
 
-authRouter.get("/recover-password", recoverPw);
-authRouter.get("/reset-password", resetPw);
+authRouter.post("/recover-password", recoverPw);
+authRouter.post("/reset-password", resetPw);
 
 export default authRouter;
