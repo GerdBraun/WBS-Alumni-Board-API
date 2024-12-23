@@ -1,25 +1,9 @@
 import multer from "multer";
 import path from "path";
 
-const userAvatar = multer.diskStorage({
-  destination: "image-uploads/user-avatars",
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `${Date.now()}-${file.fieldname}${path.extname(file.originalname)}`
-    );
-  },
-});
+//const userAvatar = multer.memoryStorage();
 
-const companyLogo = multer.diskStorage({
-  destination: "image-uploads/company-logos",
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `${Date.now()}-${file.fieldname}${path.extname(file.originalname)}`
-    );
-  },
-});
+const companyLogo = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["jpeg", "jpg", "png", "gif"];
@@ -31,11 +15,11 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-export const uploadUserAvatar = multer({
-  storage: userAvatar,
-  fileFilter: fileFilter,
-  limits: { fileSize: 1024 * 1024 * 5 },
-});
+// export const uploadUserAvatar = multer({
+//   storage: userAvatar,
+//   fileFilter: fileFilter,
+//   limits: { fileSize: 1024 * 1024 * 5 },
+// });
 
 export const uploadCompanyLogo = multer({
   storage: companyLogo,

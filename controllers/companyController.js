@@ -2,7 +2,7 @@ import { Company } from "../db.js";
 
 export const createCompany = async (req, res) => {
   try {
-    const logo = req.file ? req.file.filename : null;
+    const logo = req.file ? req.cloudinaryURL : null;
     const {
       body: { name },
     } = req;
