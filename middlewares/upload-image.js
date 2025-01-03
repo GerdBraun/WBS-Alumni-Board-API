@@ -1,7 +1,7 @@
 import multer from "multer";
-import path from "path";
+//import path from "path";
 
-//const userAvatar = multer.memoryStorage();
+const userAvatar = multer.memoryStorage();
 
 const companyLogo = multer.memoryStorage();
 
@@ -15,11 +15,11 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// export const uploadUserAvatar = multer({
-//   storage: userAvatar,
-//   fileFilter: fileFilter,
-//   limits: { fileSize: 1024 * 1024 * 5 },
-// });
+ export const uploadUserAvatar = multer({
+   storage: userAvatar,
+   fileFilter: fileFilter,
+   limits: { fileSize: 1024 * 1024 * 5 },
+ });
 
 export const uploadCompanyLogo = multer({
   storage: companyLogo,

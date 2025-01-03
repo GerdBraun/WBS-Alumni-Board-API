@@ -10,7 +10,8 @@ import { authenticate } from "../middlewares/authenticate.js";
 import { validateUser } from "../middlewares/validateRequest.js";
 import { validateRequest } from "../middlewares/validateRequest.js";
 import { paginationMiddleware } from "../middlewares/paginationMiddleware.js";
-//import { uploadUserAvatar } from "../middlewares/upload-image.js";
+import { uploadUserAvatar } from "../middlewares/upload-image.js";
+import cloudUploader from "../middlewares/cloudUploader.js";
 
 const router = express.Router();
 
@@ -23,8 +24,9 @@ router
   .get(authenticate, findOneById)
   .put(
     authenticate,
-    validateRequest,
-    // uploadUserAvatar.single("file"),
+    //validateRequest,
+    uploadUserAvatar.single("file"),
+    cloudUploader,
     updateOne
   )
   .delete(authenticate, deleteOne);

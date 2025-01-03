@@ -22,5 +22,6 @@ export const userSchema = {
     role: Joi.string().optional(),
     passwordResetToken: Joi.string().optional(),
     passwordResetTokenExpiry: Joi.date().optional(),
+    avatar: Joi.string().optional(),
 }),
 };
