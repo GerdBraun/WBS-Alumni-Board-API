@@ -180,14 +180,19 @@ export const findAll = asyncWrapper(async (req, res, next) => {
 });
 
 export const updateOne = asyncWrapper(async (req, res, next) => {
+  const avatar = req.file ? req.cloudinaryURL : null;
   const {
     params: { id },
     body,
   } = req;
+  console.log({...body, avatar});
 
-  const [updated] = await User.update(body, {
-    where: { id },
-  });
+  const [updated] = await User.update(
+    { ...body, avatar },
+    {
+      where: { id },
+    }
+  );
 
   // delete / insert BridgeUserSkills
   await deleteBridgeUserSkillsByUserId(id);
