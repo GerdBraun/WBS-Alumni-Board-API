@@ -40,6 +40,11 @@ export const login = asyncWrapper(async (req, res, next) => {
         },
       },
       {
+        model: Project,
+        required: false,
+        attributes: ["id", "title"],
+      },
+      {
         model: Job,
         required: false,
         attributes: ["id", "title"],
@@ -185,7 +190,7 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
     params: { id },
     body,
   } = req;
-  console.log({...body, avatar});
+  console.log({ ...body, avatar });
 
   const [updated] = await User.update(
     { ...body, avatar },
