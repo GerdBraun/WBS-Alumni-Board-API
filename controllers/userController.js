@@ -185,10 +185,11 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
     params: { id },
     body,
   } = req;
-  console.log({...body, avatar});
-
+  let newBody = {}
+  avatar ? newBody = {...body, avatar}: newBody = {...body} ;
+  console.log({...body, avatar})
   const [updated] = await User.update(
-    { ...body, avatar },
+    newBody,
     {
       where: { id },
     }
