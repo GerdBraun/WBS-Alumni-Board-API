@@ -40,6 +40,11 @@ export const login = asyncWrapper(async (req, res, next) => {
         },
       },
       {
+        model: Project,
+        required: false,
+        attributes: ["id", "title"],
+      },
+      {
         model: Job,
         required: false,
         attributes: ["id", "title"],
