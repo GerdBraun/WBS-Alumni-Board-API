@@ -66,14 +66,14 @@ BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
 /**
  * associations Project - Skill
  */
-Project.hasMany(BridgeProjectSkill, { foreignKey: "ProjectId" });
-Skill.hasMany(BridgeProjectSkill, { foreignKey: "SkillId" });
+// Project.hasMany(BridgeProjectSkill, { foreignKey: "ProjectId" });
+// Skill.hasMany(BridgeProjectSkill, { foreignKey: "SkillId" });
 
-Project.belongsToMany(Skill, { through: BridgeProjectSkill });
-Skill.belongsToMany(Project, { through: BridgeProjectSkill });
+// Project.belongsToMany(Skill, { through: BridgeProjectSkill });
+// Skill.belongsToMany(Project, { through: BridgeProjectSkill });
 
-BridgeProjectSkill.hasOne(Project, { foreignKey: "id" });
-BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
+// BridgeProjectSkill.hasOne(Project, { foreignKey: "id" });
+// BridgeProjectSkill.hasOne(Skill, { foreignKey: "id" });
 
 /**
  * associations Job - Skill

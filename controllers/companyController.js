@@ -8,6 +8,11 @@ export const createCompany = async (req, res) => {
     } = req;
     console.log(req.body, logo);
     if (!name) return res.status(400).json({ error: "name is required" });
+
+    // prevent duplicate company names
+    const test = await Company.findOne({ where: { name } });
+    if (test) return res.status(400).json({ error: "company already exists" });
+
     const company = await Company.create({ name, logo });
     res.status(201).json(company);
   } catch (error) {
