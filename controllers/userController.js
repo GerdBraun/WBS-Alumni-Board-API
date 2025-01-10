@@ -219,15 +219,15 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
   );
 
   // delete / insert BridgeUserSkills
-  await deleteBridgeUserSkillsByUserId(id);
   const skills = body.skills;
   if (skills) {
-    skills.map((skillId) => {
-      BridgeUserSkill.create({
+    await deleteBridgeUserSkillsByUserId(id);
+    for (let i = 0; i < skills.length; i++) {
+      await BridgeUserSkill.create({
         UserId: id,
-        SkillId: skillId,
+        SkillId: skills[i],
       });
-    });
+    }
   }
 
   if (!updated) {
