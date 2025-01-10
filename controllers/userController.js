@@ -67,7 +67,7 @@ export const login = asyncWrapper(async (req, res, next) => {
   if (!isMatch)
     throw new ErrorResponse("Forbidden. Invalid email or password", 403);
 
-  const payload = { id: user.id, email: user.email };
+  const payload = { id: user.id, email: user.email, role: user.role };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET ?? "secret", {
     expiresIn: 3600000,
@@ -84,6 +84,24 @@ export const getProfile = asyncWrapper(async (req, res, next) => {
   const user = await User.findByPk(id);
   res.json(user);
 });
+
+export const verifyToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return next(new ErrorResponse('No token provided', 403));
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return next(new ErrorResponse('Failed to authenticate token', 401));
+    }
+
+    const userId = decoded.id;
+  // res.json({ user: payload, token });
+  res.json(userId);
+  });
+};
 
 /**
  * "standard" CRUD
@@ -215,7 +233,42 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
   if (!updated) {
     throw new ErrorResponse("Record not found", 404);
   }
-  const updatedRecord = await User.findByPk(id);
+  const updatedRecord = await User.scope("withPassword").findOne({
+    where: { id },
+    include: [
+      {
+        model: Company,
+        required: false,
+        attributes: ["id", "name"],
+      },
+      {
+        model: Skill,
+        required: false,
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+      {
+        model: Project,
+        required: false,
+        attributes: ["id", "title"],
+      },
+      {
+        model: Job,
+        required: false,
+        attributes: ["id", "title"],
+        include: [
+          {
+            model: Company,
+            required: false,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
+
   res.json(updatedRecord);
 });
 
