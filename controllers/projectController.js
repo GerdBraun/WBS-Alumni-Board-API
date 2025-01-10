@@ -70,12 +70,12 @@ export const createOne = asyncWrapper(async (req, res, next) => {
   // insert BridgeProjectSkills
   const skills = body.skills;
   if (skills) {
-    skills.map((skillId) => {
-      BridgeProjectSkill.create({
-        ProjectId: id,
-        SkillId: skillId,
+    for (let i = 0; i < skills.length; i++) {
+      await BridgeUserSkill.create({
+        UserId: id,
+        SkillId: skills[i],
       });
-    });
+    }
   }
 
   res.status(201).json(record);
@@ -92,15 +92,15 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
   });
 
   // delete / insert BridgeProjectSkills
-  await deleteBridgeUserSkillsByProjectId(id);
   const skills = body.skills;
   if (skills) {
-    skills.map((skillId) => {
-      BridgeProjectSkill.create({
-        ProjectId: id,
-        SkillId: skillId,
+    await deleteBridgeUserSkillsByProjectId(id);
+    for (let i = 0; i < skills.length; i++) {
+      await BridgeUserSkill.create({
+        UserId: id,
+        SkillId: skills[i],
       });
-    });
+    }
   }
 
   if (!updated) {
