@@ -5,6 +5,7 @@ import skillRouter from "./skillRouter.js";
 import jobRouter from "./jobRouter.js";
 import projectRouter from "./projectRouter.js";
 import matchRouter from "./matchRouter.js";
+import companyRouter from "./companyRouter.js";
 
 
 import { dynamicModelMiddleware } from "../middlewares/dynamicModel.js";
@@ -21,7 +22,7 @@ import {
 import { findAllByModelAndId } from "../controllers/commentController.js";
 import { getStats } from "../controllers/statController.js";
 import { sendMail } from "../controllers/mailController.js";
-import companyRouter from "./companyRouter.js";
+import { createChat } from "../controllers/openaiController.js";
 
 const router = express.Router();
 
@@ -30,12 +31,14 @@ router.use("/users", userRouter);
 router.use("/skills", skillRouter);
 router.use("/jobs", jobRouter);
 router.use("/projects", projectRouter);
-router.use("/company", companyRouter)
+router.use("/company", companyRouter);
 
 router.use("/match", matchRouter);
 
 router.route("/stats").get(getStats);
 router.route("/mail").post(sendMail);
+
+router.route("/prompts").post(createChat);
 
 // uses the method from the commentController for finding
 router.use("/comments/:model/:id", paginationMiddleware, findAllByModelAndId);

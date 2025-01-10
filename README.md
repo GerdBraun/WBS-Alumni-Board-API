@@ -1,8 +1,8 @@
 # WBS-Alumni-Board-API
 
 ## Exposed endpoints:
-- **push** **/api/users** for signing up
-- **push** **/api/auth/login** for login (& retrieve auth token)
+- **post** **/api/users** for signing up
+- **post** **/api/auth/login** for login (& retrieve auth token)
 - **/api/users** for any other CRUD operations
 - **/api/skills**
 - **/api/jobs** (pass skills as an array of skill-ids: skills:[])
@@ -18,6 +18,9 @@
 - **/api/match/jobs/users/:userId** get jobs matching to a user
 - **/api/match/users/projects/:jobId** get users matching to a project
 - **/api/match/projects/users/:userId** get projects matching to a user
+
+### OpenAI
+- **post** **/api/prompts** communicate to proxy
 
 ## ToDos:
 - secure endpoints as needed
