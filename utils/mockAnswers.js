@@ -16,24 +16,25 @@ export const answers = {
   },
 };
 
-export const getMockAnswers = (messages) => {
-  if (!messages || !messages.length) {
+export const getMockAnswers = (question) => {
+    const message = question.toLowerCase();
+  if (!message || !message.length) {
     return null;
   }
-  if (messages.includes("balance:")) {
-    if (messages.includes("junior")) {
+  if (message.includes("balance")) {
+    if (message.includes("junior")) {
       return answers.balance.junior;
     }
-    if (messages.includes("senior")) {
+    if (message.includes("senior")) {
       return answers.balance.senior;
     }
-    if (messages.includes("manager")) {
+    if (message.includes("manager")) {
       return answers.balance.manager;
     }
     return answers.balance.general;
   }
 
-  if (messages.includes("skills:")) {
+  if (message.includes("skills")) {
     return answers.requiredSkills.general;
   }
 
