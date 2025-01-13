@@ -13,7 +13,7 @@ export const findAllByModelAndId = asyncWrapper(async (req, res, next) => {
       },
       offset,
       limit,
-      order: [["createdAt", "DESC"]],
+      order: [["createdAt", "ASC"]],
       include: [
         {
           model: User,
