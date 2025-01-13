@@ -69,10 +69,12 @@ export const createOne = asyncWrapper(async (req, res, next) => {
 
   // insert BridgeProjectSkills
   const skills = body.skills;
+console.log(skills);
+
   if (skills) {
     for (let i = 0; i < skills.length; i++) {
       await BridgeProjectSkill.create({
-        ProjectId: id,
+        ProjectId: record.id,
         SkillId: skills[i],
       });
     }
@@ -121,7 +123,7 @@ export const deleteOne = asyncWrapper(async (req, res, next) => {
   if (!deleted) {
     throw new ErrorResponse("Record not found", 404);
   }
-  await deleteBridgeUserSkillsByProjectId(id);
+  await deleteBridgeProjectSkillsByProjectId(id);
   res.status(204).end();
 });
 
