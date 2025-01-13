@@ -4,6 +4,9 @@ import { ErrorResponse } from "../utils/ErrorResponse.js";
 
 export const findAll = asyncWrapper(async (req, res, next) => {
   const { page, limit, offset } = res.pagination;
+
+  console.log("***** pagination", res.pagination);
+
   const records = await Project.findAndCountAll({
     offset,
     limit,
@@ -69,8 +72,6 @@ export const createOne = asyncWrapper(async (req, res, next) => {
 
   // insert BridgeProjectSkills
   const skills = body.skills;
-console.log(skills);
-
   if (skills) {
     for (let i = 0; i < skills.length; i++) {
       await BridgeProjectSkill.create({
