@@ -38,7 +38,7 @@ router.use("/match", matchRouter);
 router.route("/stats").get(getStats);
 router.route("/mail").post(sendMail);
 
-router.route("/prompts").post(createChat);
+router.route("/prompts").post(authenticate, createChat);
 
 // uses the method from the commentController for finding
 router.use("/comments/:model/:id", paginationMiddleware, findAllByModelAndId);
