@@ -94,10 +94,10 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
   // delete / insert BridgeProjectSkills
   const skills = body.skills;
   if (skills) {
-    await deleteBridgeUserSkillsByProjectId(id);
+    await deleteBridgeProjectSkillsByProjectId(id);
     for (let i = 0; i < skills.length; i++) {
-      await BridgeUserSkill.create({
-        UserId: id,
+      await BridgeProjectSkill.create({
+        ProjectId: id,
         SkillId: skills[i],
       });
     }
@@ -129,7 +129,7 @@ export const deleteOne = asyncWrapper(async (req, res, next) => {
  * utility methods
  */
 
-const deleteBridgeUserSkillsByProjectId = async (id) => {
+const deleteBridgeProjectSkillsByProjectId = async (id) => {
   await BridgeProjectSkill.destroy({ where: { ProjectId: id } });
   return true;
 };
