@@ -1,16 +1,17 @@
 import express from "express";
 import { paginationMiddleware } from "../middlewares/paginationMiddleware.js";
 import { createOne, deleteOne, findAll, findOneById, updateOne } from "../controllers/jobController.js";
+import { authenticate } from "../middlewares/authenticate.js";
 
 const router = express.Router();
 
 router.route("/")
-.get(paginationMiddleware, findAll)
-.post(createOne)
+.get( paginationMiddleware, findAll)
+.post(authenticate, createOne)
 
 router.route("/:id")
-.get(findOneById)
-.put(updateOne)
-.delete(deleteOne);
+.get(authenticate, findOneById)
+.put(authenticate, updateOne)
+.delete(authenticate, deleteOne);
 
 export default router;
