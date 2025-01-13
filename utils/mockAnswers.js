@@ -21,9 +21,6 @@ export const getMockAnswers = (messages) => {
     return null;
   }
   if (messages.includes("balance:")) {
-    if (messages.includes("general")) {
-      return answers.balance.general;
-    }
     if (messages.includes("junior")) {
       return answers.balance.junior;
     }
@@ -33,12 +30,11 @@ export const getMockAnswers = (messages) => {
     if (messages.includes("manager")) {
       return answers.balance.manager;
     }
+    return answers.balance.general;
   }
 
   if (messages.includes("skills:")) {
-    if (messages.includes("general")) {
-      return answers.requiredSkills.general;
-    }
+    return answers.requiredSkills.general;
   }
 
   return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
