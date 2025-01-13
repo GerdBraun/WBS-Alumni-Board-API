@@ -1,4 +1,4 @@
-import { Comment, Company, Job, User, Skill } from "../db.js";
+import { Comment, Company, Job, User, Skill, BridgeJobSkill } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
@@ -76,6 +76,18 @@ export const findOneById = asyncWrapper(async (req, res, next) => {
 export const createOne = asyncWrapper(async (req, res, next) => {
   const { body } = req;
   const record = await Job.create(body);
+
+  // insert BridgeJobSkills
+  const skills = body.skills;
+  if (skills) {
+    for (let i = 0; i < skills.length; i++) {
+      await BridgeJobSkill.create({
+        JobId: record.id,
+        SkillId: skills[i],
+      });
+    }
+  }
+
   res.status(201).json(record);
 });
 
@@ -84,6 +96,18 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
     params: { id },
     body,
   } = req;
+
+  const skills = body.skills;
+  if (skills) {
+    await deleteBridgeJobSkillsByJobId(id);
+    for (let i = 0; i < skills.length; i++) {
+      await BridgeJobSkill.create({
+        JobId: id,
+        SkillId: skills[i],
+      });
+    }
+  }
+
 
   const [updated] = await Job.update(body, {
     where: { id },
@@ -107,5 +131,16 @@ export const deleteOne = asyncWrapper(async (req, res, next) => {
   if (!deleted) {
     throw new ErrorResponse("Record not found", 404);
   }
+  await deleteBridgeJobSkillsByJobId(id);
   res.status(204).end();
 });
+
+
+/**
+ * utility methods
+ */
+
+const deleteBridgeJobSkillsByJobId = async (id) => {
+  await BridgeJobSkill.destroy({ where: { ProjectId: id } });
+  return true;
+};
