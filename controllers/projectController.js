@@ -71,8 +71,8 @@ export const createOne = asyncWrapper(async (req, res, next) => {
   const skills = body.skills;
   if (skills) {
     for (let i = 0; i < skills.length; i++) {
-      await BridgeUserSkill.create({
-        UserId: id,
+      await BridgeProjectSkill.create({
+        ProjectId: id,
         SkillId: skills[i],
       });
     }
