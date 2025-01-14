@@ -97,11 +97,12 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
     body,
   } = req;
 
+
   const skills = body.skills;
   if (skills) {
     await deleteBridgeJobSkillsByJobId(id);
     for (let i = 0; i < skills.length; i++) {
-      await BridgeJobSkill.create({
+      const res = await BridgeJobSkill.create({
         JobId: id,
         SkillId: skills[i],
       });
@@ -141,6 +142,6 @@ export const deleteOne = asyncWrapper(async (req, res, next) => {
  */
 
 const deleteBridgeJobSkillsByJobId = async (id) => {
-  await BridgeJobSkill.destroy({ where: { ProjectId: id } });
+  await BridgeJobSkill.destroy({ where: { JobId: id } });
   return true;
 };
