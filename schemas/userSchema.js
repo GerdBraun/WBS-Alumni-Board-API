@@ -23,5 +23,6 @@ export const userSchema = {
     passwordResetToken: Joi.string().optional(),
     passwordResetTokenExpiry: Joi.date().optional(),
     avatar: Joi.string().optional(),
+    skills: Joi.array().items(Joi.string()).optional(),
 }),
 };
