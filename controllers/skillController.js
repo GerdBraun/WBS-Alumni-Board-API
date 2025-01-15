@@ -1,10 +1,18 @@
+import { Op } from "sequelize";
 import { Skill, User } from "../db.js";
 import { asyncWrapper } from "../utils/asyncWrapper.js";
 import { ErrorResponse } from "../utils/ErrorResponse.js";
 
 export const findAll = asyncWrapper(async (req, res, next) => {
   const { page, limit, offset } = res.pagination;
+
+  const search = req.query.search;
+  const whereClause = search
+  ? { name: { [Op.like]: `%${search}%` } }
+  : {};
+
   const records = await Skill.findAndCountAll({
+    where: whereClause,
     offset,
     limit,
     order: [["createdAt", "DESC"]],
